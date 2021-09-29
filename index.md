@@ -4,12 +4,12 @@ Spatial Metric Calculator is a research software tool for performing *code-free*
 
 It is built to:
 
-1) Design, import, edit, and visualise undirected graphs that primarily represent (but are not restricted to) spatial movement within interior spaces (e.g. offices).
-2) Allow the user to automate and/or leverage DXF files in aspects of the design process.
-3) Let the user specify key locations on that graph for the purposes of graph and visibility analyses.
-4) Calculate and visualise a variety of centrality, path, and distance based metrics (based on Euclidean, graph, angular deviation, # turns etc. distance measures), with customisable destination, routing and visibility dependencies.
-5) Export any metrics that have been generated as comma separated plain text files.
-6) Allow for visualisation of metrics (in 2 and 3 dimensions) and basic plotting & comparison both between metrics and across distinct projects.
+1. Design, import, edit, and visualise undirected graphs that primarily represent (but are not restricted to) spatial movement within interior spaces (e.g. offices).
+2. Allow the user to automate and/or leverage DXF files in aspects of the design process.
+3. Let the user specify key locations on that graph for the purposes of graph and visibility analyses.
+4. Calculate and visualise a variety of centrality, path, and distance based metrics (based on Euclidean, graph, angular deviation, # turns etc. distance measures), with customisable destination, routing and visibility dependencies.
+5. Export any metrics that have been generated as comma separated plain text files.
+6. Allow for visualisation of metrics (in 2 and 3 dimensions) and basic plotting & comparison both between metrics and across distinct projects.
 
 This program utilises [FLTK](http://www.fltk.org/index.php) to achieve GUI functionality and multi-platform support. 
 
