@@ -1,4 +1,8 @@
 ![Screenshot](screens.png)
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
+[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
+[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
+[![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
 
 Spatial Metric Calculator is a research software tool for performing *code-free* graph analyses and visualisation. 
 
@@ -46,3 +50,6 @@ from the repository directory. Detailed instructions for compiling under Unix st
 
 This software is distributed here under a public [Academic License](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/LICENSE). It guarantees free use to use, adapt, and distribute this software under its terms for academic, teaching, and personal use.
 
+## Attribution
+
+If this software was useful in the course of your research please consider citing it. Various citation formats can be downloaded by clicking on the following DOI badge. [![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
