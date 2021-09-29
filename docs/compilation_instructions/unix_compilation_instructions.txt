@@ -1,0 +1,184 @@
+This file contains instructions for installing Spatial Metric Calculator alongside its dependencies on 
+Unix-like systems (i.e. MacOS + Linux)
+
+
+DISCLAIMER: 
+
+The instructions for installing Spatial Metric Calculator's dependencies are *examples guides* and should not be
+treated as official guidance for those pieces of software. Always check with the appropriate sources (listed below) 
+for the appropriate installation method on your machine and any preferences you wish to specify in the process.
+
+************* This guide is supplied WITHOUT ANY WARRANTY; without even the implied warranty ************************
+*********************** of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. *************************************
+
+
+1. Linux based systems
+
+1.0. CMAKE
+
+To install Spatial Metric Calcular you first need a working copy of CMake. CMake is a cross platform set of tools for 
+building software natively based on universal instruction scripts. By installing CMake on the 'CmakeLists.txt' file 
+in the repository can be used to build Spatial Metric Calculator.
+
+It is highly likely your Linux distribution already has a copy of CMake, but if not, it can easily be installed 
+through your package manager using, for example, the command
+
+	>$: sudo apt install cmake
+
+or
+
+	>$: sudo yum install cmake
+
+for Debian or Fedora based distributions, respectively.
+
+Alternatively one can install CMake in either source or binary form from https://cmake.org/download/. 
+For more information see https://cmake.org/.
+
+1.1 Boost
+
+A dependency of Spatial Metric Calculator is Boost which provides C++ libraries for various low level functionality.
+
+The easiest way to install Boost is through your package manager. Assuming a Debian distribution this would, for 
+example, be achieved through the command
+
+	>$ sudo apt install libboost-all-dev
+
+Alternatively, one can download the source directly from https://www.boost.org/users/download/. A detailed 
+walk through of an installation can be found at https://www.boost.org/doc/libs/1_77_0/more/getting_started/. 
+A concise, "simple case", is shown below.
+
+Once extracted, navigate to the extracted Boost directory, then, assuming a default installation to /usr/local/, 
+Boost can then typically be installed by the following commands
+
+	>$ ./bootstrap.sh --prefix=/usr/local
+	>$ sudo ./b2 install
+
+These commands may take some time.
+
+Note: the CMakeLists.txt file will stop and indicate an error if only an earlier version of Boost than v1.77 is 
+availiable. This version is required to open the bundled example .proj files. If this is too restrictive you can 
+edit the line containing `find_package(Boost 1.77 REQUIRED COMPONENTS date_time serialization)` and adjust 1.77 
+to the version available to you. Please note that if you do so the build of Spatial Metric Calculator that you 
+compile may not be able to open .proj files produced by other copies of Spatial Metric Calculator.
+
+1.2 FLTK
+
+A dependency of Spatial Metric Calculator is FLTK which provides cross platform GUI functionality. You can download 
+either the current development snapshot from https://github.com/fltk/fltk, or the latest stable release (v1.3.7 at 
+time of writing) from https://www.fltk.org/software.php (recommended).
+
+FLTK must be built with CMake for a successful build of Spatial Metric Calculator. To do so, extract the FLTK 
+download and navigate into the directory. FLTK can the be installed with the following commands
+
+	>$ mkdir build
+	>$ cd build
+	>$ cmake ..
+	>$ make
+	>$ sudo make install
+
+For more information see the README_CMake.txt file in the FLTK directory and/or see https://www.fltk.org/.
+
+1.3
+
+Once these dependencies are installed, Spatial Metric Calculator can be built by navigating to the repository 
+and then entering the commands
+
+	>$ mkdir build
+	>$ cd build
+	>$ cmake ..
+	>$ make
+
+An executable file "Spatial-Metric-Calculator" will be built in the newly created build directory.
+
+2. MacOS systems
+
+2.0 Developer tools (Clang etc.)
+
+If you do not have a C++ compiler, or if you are unsure, you can install the Apple developer command line tools 
+with the command
+
+	>$ xcode-select —install
+
+2.1. CMAKE
+
+To install Spatial Metric Calcular you first need a working copy of CMake. CMake is a cross platform set of tools for 
+building software natively based on universal instruction scripts. By installing CMake on the 'CmakeLists.txt' file 
+in the repository can be used to build Spatial Metric Calculator.
+
+This can easily be installed through homebrew (https://brew.sh/) through the command
+
+	>$: brew install cmake
+
+Alternatively one can obtain CMake in .dmg form from https://cmake.org/download/. Once the .dmg is downloaded you 
+can install it by 
+	
+	1. Double clicking the downloaded .dmg file to initially install it. 
+	2. In the window that pops up, drag the CMake icon into the Application folder.
+	3. Add the following line to your shell profile file. (E.g. this might be your .profile file found in 
+	   /Users/your_user_name/ [You can create it if it doesn't exist]. Note the "." at the start of the filename.)
+
+		export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
+
+	4. Reload your .profile file (or equivalent) with the command
+
+		>$ source ~/.profile
+
+	   Adapt as necessary.
+
+For more information see https://cmake.org/.
+
+2.2 Boost
+
+A dependency of Spatial Metric Calculator is Boost which provides C++ libraries for various low level functionality.
+
+The easiest way to install Boost is through homebrew with the command
+
+	>$ brew install boost
+
+Alternatively, one can download the source directly from https://www.boost.org/users/download/. A detailed 
+walk through of an installation can be found at https://www.boost.org/doc/libs/1_77_0/more/getting_started/. 
+A concise, "simple case", is shown below.
+
+Once extracted, navigate to the extracted Boost directory, then, assuming a default installation to /usr/local/, 
+Boost can then typically be installed by the following commands
+
+	>$ ./bootstrap.sh --prefix=/usr/local
+	>$ sudo ./b2 install
+
+These commands may take some time.
+
+Note: the CMakeLists.txt file will stop and indicate an error if only an earlier version of Boost than v1.77 is 
+availiable. This version is required to open the bundled example .proj files. If this is too restrictive you can 
+edit the line containing `find_package(Boost 1.77 REQUIRED COMPONENTS date_time serialization)` and adjust 1.77 
+to the version available to you. Please note that if you do so the build of Spatial Metric Calculator that you 
+compile may not be able to open .proj files produced by other copies of Spatial Metric Calculator.
+
+2.3 FLTK
+
+A dependency of Spatial Metric Calculator is FLTK which provides cross platform GUI functionality. You can download 
+either the current development snapshot from https://github.com/fltk/fltk, or the latest stable release (v1.3.7 at 
+time of writing) from https://www.fltk.org/software.php (recommended).
+
+FLTK must be built with CMake for a successful build of Spatial Metric Calculator. To do so, extract the FLTK 
+download and navigate into the directory. FLTK can the be installed with the following commands
+
+	>$ mkdir build
+	>$ cd build
+	>$ cmake ..
+	>$ make
+	>$ sudo make install
+
+For more information see the README_CMake.txt file in the FLTK directory and/or see https://www.fltk.org/.
+
+2.4
+
+Once these dependencies are installed, Spatial Metric Calculator can be built by navigating to the repository 
+and then entering the commands
+
+	>$ mkdir build
+	>$ cd build
+	>$ cmake ..
+	>$ make
+
+A MacOS app bundle "Spatial-Metric-Calculator.app" will be built in the newly created build directory. This can be 
+moved into your Applications folder, or anywhere else, if desired.
