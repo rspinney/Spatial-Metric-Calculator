@@ -1,6 +1,6 @@
 # Spatial Metric Calculator
 
-![Screenshot](misc/screens.png)
+![Screenshot](screens.png)
 
 Spatial Metric Calculator is a research software tool for performing *code-free* graph analyses and visualisation. 
 
