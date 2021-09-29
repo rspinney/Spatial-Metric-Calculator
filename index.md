@@ -31,8 +31,8 @@ Whilst most users are encouraged to download the provided [pre-compiled executab
 
 Before doing so note that Spatial Metric Calculator has the following dependencies:
 
-1) [FLTK](http://www.fltk.org/index.php) (v1.3.7 or later) for GUI functionality, used under the [FLTK license](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/docs/opensource_licenses/FLTK_license.txt).
-2) [Boost](http://www.boost.org/) (v1.77 or later) for serialization and other small utility functions, used under the [Boost license](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/docs/opensource_licenses/Boost_license.txt).
+1. [FLTK](http://www.fltk.org/index.php) (v1.3.7 or later) for GUI functionality, used under the [FLTK license](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/docs/opensource_licenses/FLTK_license.txt).
+2. [Boost](http://www.boost.org/) (v1.77 or later) for serialization and other small utility functions, used under the [Boost license](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/docs/opensource_licenses/Boost_license.txt).
 
 Provided Boost has been installed, and FLTK has been built and installed using CMake on your system, an executable can also be built using CMake with the provided `CMakeLists.txt` script.
 
