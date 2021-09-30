@@ -52,4 +52,6 @@ This software is distributed here under a public [Academic License](https://gith
 
 ## Attribution
 
-If this software was useful in the course of your research please consider citing it. Various citation formats can be downloaded by clicking on the following DOI badge. [![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
+If this software was useful in the course of your research please consider citing it. Various citation formats can be downloaded by clicking [here](https://zenodo.org/badge/latestdoi/411694209) or on the following DOI badge. 
+
+[![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
