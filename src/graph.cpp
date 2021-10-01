@@ -911,9 +911,9 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
         G_dist.neighbours.push_back(std::vector<int>(0));
         G_dist_3D.neighbours.push_back(std::vector<int>(0));
         
-        G.weights.push_back(std::map<int,double>());  //vector of hash tables which for neighbour node's values encode as keys for weights from the node to those neighbours
-        G_dist.weights.push_back(std::map<int,double>());
-        G_dist_3D.weights.push_back(std::map<int,double>());
+        G.weights.push_back(std::unordered_map<int,double>());  //vector of hash tables which for neighbour node's values encode as keys for weights from the node to those neighbours
+        G_dist.weights.push_back(std::unordered_map<int,double>());
+        G_dist_3D.weights.push_back(std::unordered_map<int,double>());
     }
     
     
@@ -979,9 +979,9 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             S_dist.neighbours.push_back(std::vector<int>(0));
             S_dist_3D.neighbours.push_back(std::vector<int>(0));
             
-            S.weights.push_back(std::map<int,double>());
-            S_dist.weights.push_back(std::map<int,double>());
-            S_dist_3D.weights.push_back(std::map<int,double>());
+            S.weights.push_back(std::unordered_map<int,double>());
+            S_dist.weights.push_back(std::unordered_map<int,double>());
+            S_dist_3D.weights.push_back(std::unordered_map<int,double>());
             
             
             for (int j=0;j<num_segments;j++){
@@ -1087,8 +1087,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             G_dual_ang.neighbours.push_back(std::vector<int>(0));
             G_dual_turn.neighbours.push_back(std::vector<int>(0));
             
-            G_dual_ang.weights.push_back(std::map<int,double>());
-            G_dual_turn.weights.push_back(std::map<int,double>());
+            G_dual_ang.weights.push_back(std::unordered_map<int,double>());
+            G_dual_turn.weights.push_back(std::unordered_map<int,double>());
             
             
             for (int j=0;j<num_dual_points;j++){
@@ -1199,8 +1199,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             S_dual_ang.neighbours.push_back(std::vector<int>(0));
             S_dual_turn.neighbours.push_back(std::vector<int>(0));
             
-            S_dual_ang.weights.push_back(std::map<int,double>());
-            S_dual_turn.weights.push_back(std::map<int,double>());
+            S_dual_ang.weights.push_back(std::unordered_map<int,double>());
+            S_dual_turn.weights.push_back(std::unordered_map<int,double>());
             
             if (i<static_cast<int>(links.size())){
                 

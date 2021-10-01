@@ -13,6 +13,7 @@
 #include <math.h>
 #include <cstdio>
 #include <vector>
+#include <unordered_map>
 #include <map>
 #include <mutex> 
 #include <stdexcept>
@@ -43,7 +44,7 @@ struct graph{
     friend class boost::serialization::access;
     
     std::vector<std::vector<int32_t> > neighbours;
-    std::vector<std::map<int32_t,double> > weights;
+    std::vector<std::unordered_map<int32_t,double> > weights;
     
     void clear(){
       
@@ -51,18 +52,18 @@ struct graph{
         weights.clear();
         
         std::vector<std::vector<int32_t> >().swap(neighbours);
-        std::vector<std::map<int32_t,double> >().swap(weights);    
+        std::vector<std::unordered_map<int32_t,double> >().swap(weights);    
     }
     
-    template<class Archive>
-    void serialize(Archive & ar, const uint32_t ){
-        ar & neighbours & weights;
-    }
+    // template<class Archive>
+    // void serialize(Archive & ar, const uint32_t ){
+    //     ar & neighbours & weights;
+    // }
 
     graph(){};
 };
 
-BOOST_CLASS_TRACKING(graph, boost::serialization::track_never)
+//BOOST_CLASS_TRACKING(graph, boost::serialization::track_never)
 
 struct route_weight_number{
     double weight;
@@ -86,19 +87,19 @@ struct graph_routes{
     int32_t node_origin;
     int32_t dual;
     
-    template<class Archive>
-    void serialize(Archive & ar, const uint32_t /*version*/)
-    {// note, version is always the latest when saving
-        ar &  weight;ar &  path;ar &  mult_path;ar &  end_node; ar &  origin; ar & node_origin; ar & dual;
+    // template<class Archive>
+    // void serialize(Archive & ar, const uint32_t /*version*/)
+    // {// note, version is always the latest when saving
+    //     ar &  weight;ar &  path;ar &  mult_path;ar &  end_node; ar &  origin; ar & node_origin; ar & dual;
         
-    }
+    // }
    
     graph_routes(){
         origin=0;node_origin=0;dual=0;exist=0;
     };
 };
 
-BOOST_CLASS_TRACKING(graph_routes, boost::serialization::track_never)
+//BOOST_CLASS_TRACKING(graph_routes, boost::serialization::track_never)
 
 struct return_iterate{
     std::vector<std::vector<int> > paths;
@@ -147,20 +148,20 @@ struct map_structures{
     
     
     
-    template<class Archive>
-    void serialize(Archive & ar, const uint32_t )
-    {// note, version is always the latest when saving
+    // template<class Archive>
+    // void serialize(Archive & ar, const uint32_t )
+    // {// note, version is always the latest when saving
         
-     ar & dual_points;ar & links;
+    //  ar & dual_points;ar & links;
      
-     ar & num_segments; ar & num_points; ar & num_links;
+    //  ar & num_segments; ar & num_points; ar & num_links;
      
-     ar & points2dual & points_2_segs;
+    //  ar & points2dual & points_2_segs;
      
-     ar & G_dual_ang & G_dual_turn & S_dual_ang & S_dual_turn & S & S_dist & S_dist_3D & G & G_dist & G_dist_3D;
+    //  ar & G_dual_ang & G_dual_turn & S_dual_ang & S_dual_turn & S & S_dist & S_dist_3D & G & G_dist & G_dist_3D;
      
-     ar & line_segments;
-    }
+    //  ar & line_segments;
+    // }
    
     map_structures(){program = NULL;}
     
@@ -225,7 +226,7 @@ struct map_structures{
     
 };
 
-BOOST_CLASS_TRACKING(map_structures, boost::serialization::track_never)
+//BOOST_CLASS_TRACKING(map_structures, boost::serialization::track_never)
 
 //BOOST_CLASS_VERSION(map_structures, 1)
 

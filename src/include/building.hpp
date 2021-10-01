@@ -257,35 +257,37 @@ struct building: public building_base{
       
          if (version<1){
 
-           ar &  floor_plans;
-             ar &  points;
-             ar &  adj_list;
-             ar &  map;
-             ar &  custom_metric;
+            throw;
 
-             ar & locations[0];
-             ar & locations[1];
-             ar & locations[2];
-             ar & locations[3];
-             ar & locations[4];
-             ar & locations[5];
-             ar & locations[6];
-             ar & locations[7];
-             ar & locations[8];
+           // ar &  floor_plans;
+           //   ar &  points;
+           //   ar &  adj_list;
+           //   //ar &  map;
+           //   ar &  custom_metric;
 
-             ar &  walls_sitting;
-             ar &  walls_standing;
-             ar & mid_x & mid_y & mid_z & minimum_x & minimum_y & minimum_z & maximum_x & maximum_y & maximum_z;
-             ar & floor_index;
-             ar & vis_valid & map_valid & lines_valid;
-             ar & floorarea_polygons;
-             ar & floorarea_triangles;
-             ar & floor_areas;
+           //   ar & locations[0];
+           //   ar & locations[1];
+           //   ar & locations[2];
+           //   ar & locations[3];
+           //   ar & locations[4];
+           //   ar & locations[5];
+           //   ar & locations[6];
+           //   ar & locations[7];
+           //   ar & locations[8];
 
-             floorarea_type.clear();
-             for (size_t i=0;i<floorarea_triangles.size();i++){
-                floorarea_type.push_back(0);
-             }
+           //   ar &  walls_sitting;
+           //   ar &  walls_standing;
+           //   ar & mid_x & mid_y & mid_z & minimum_x & minimum_y & minimum_z & maximum_x & maximum_y & maximum_z;
+           //   ar & floor_index;
+           //   ar & vis_valid & map_valid & lines_valid;
+           //   ar & floorarea_polygons;
+           //   ar & floorarea_triangles;
+           //   ar & floor_areas;
+
+           //   floorarea_type.clear();
+           //   for (size_t i=0;i<floorarea_triangles.size();i++){
+           //      floorarea_type.push_back(0);
+           //   }
              
         }
         else if (version==1){
