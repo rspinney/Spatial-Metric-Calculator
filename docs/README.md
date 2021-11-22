@@ -52,8 +52,10 @@ from the repository directory. Detailed instructions for compiling under Unix st
 
 This software is distributed here under a public [Academic License](https://github.com/rspinney/Spatial-Metric-Calculator/blob/master/LICENSE). It guarantees free use to use, adapt, and distribute this software under its terms for academic, teaching, and personal use.
 
-## Attribution
+## Attribution and Funding
 
 If this software was useful in the course of your research please consider citing it. Various citation formats can be downloaded by clicking [here](https://zenodo.org/badge/latestdoi/411694209) or on the following DOI badge. 
 
 [![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
+
+The development of this software was funded in part by the National Institute for Health Research's School for Public Health Research (NIHR SPHR).
