@@ -452,6 +452,16 @@ void base::calc_message_on(){
     //
 }
 
+void base::calc_message_off_cb(void* data){
+    base* program = static_cast<base*> (data);
+    program->calc_message_off();
+}
+
+void base::calc_message_on_cb(void* data){
+    base* program = static_cast<base*> (data);
+    program->calc_message_on();
+}
+
 void base::calc_message_off(){
     Fl::lock();
     calc_message->hide();
@@ -460,7 +470,7 @@ void base::calc_message_off(){
         show_visibility->value(0);
     }
     if (!root.current->map_valid) warning_map->show();
-    Fl::awake();
+    //Fl::awake();
     Fl::unlock();   
    // 
 }
@@ -665,16 +675,12 @@ void base::floorpoly_reset(){
 
 }
 
-
-
-
 void base::turn_def_cb_static(Fl_Widget*,void* data){
     base* program = static_cast<base*> (data);
     program->turn_def_cb();
 }
 
 void base::turn_def_cb(){
-
 
     if (root.calculating){
         calc_cb();
@@ -752,7 +758,6 @@ void base::push_output(std::string str){
     Fl::awake();
     
 }
-
 
 void base::push_output_no_lock(std::string str){
     
@@ -1032,7 +1037,6 @@ void base::close_route_cb(){
 }
 
 
-
 void base::show_ang_win_cb_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
     program->show_ang_win_cb();
@@ -1120,37 +1124,108 @@ void base::kill_thread() {
 
 void base::show_warning_map_start(void* data){
     
-    
     base* program = static_cast<base*> (data);
-    program->draw->show_warning_map();
+    //program->draw->show_warning_map();
+    program->show_warning_map();
 }
 
 void base::show_warning_vis_start(void* data){
     
-
     base* program = static_cast<base*> (data);
     
-    program->draw->show_warning_visibility();
+    //program->draw->show_warning_visibility();
+    program->show_warning_visibility();
     program->show_visibility->value(0);
     
 }
 
-
 void base::show_warning_map_cb(void* data){
     
-
     base* program = static_cast<base*> (data);
-    program->draw->show_warning_map();
+    //program->draw->show_warning_map();
+    program->show_warning_map();
 
 }
 
 void base::show_warning_vis_cb(void* data){
     
-    
     base* program = static_cast<base*> (data);
-    program->draw->show_warning_visibility();
+    //program->draw->show_warning_visibility();
+    program->show_warning_visibility();
 }
 
+void base::warning_map_cb_static(Fl_Widget*, void* data) {
+    base* program = static_cast<base*> (data);
+    program->warning_map_cb();
+}
+
+
+void base::warning_map_cb() {
+    
+    container* root = &(this->root);
+    root->current->route.clear();
+    show_warning_map();
+}
+
+void base::show_warning_visibility(){
+        
+    if (root.current->vis_valid){
+        push_time();
+        push_output("WARNING: Visibility constructs may have changed.\n------------------- >> Displaying/using visibility in metrics will incur additional computation steps.\n");
+    }
+
+    root.current->vis_valid=0;
+    show_visibility->value(0);    
+    if (!calc_message->visible()){
+        warning_visibility->show();
+    }
+    warning_visibility->redraw();
+    warning_visibility->parent()->redraw();
+    win->redraw();
+
+    metrics_mutex.lock();
+
+    root.current->plot_metric.clear();
+    root.current->max_plot_metric = 0.0;
+    root.current->min_plot_metric = 0.0;
+
+    metrics_mutex.unlock();
+    
+}
+
+void base::show_warning_map(){
+    
+    if ((root.current->map_valid)||(root.current->lines_valid)){
+    
+        push_time();    
+        push_output("WARNING: Spatial graph may have changed.\n------------------- >> Subsequent route/metric calculation will incur additional computation steps.\n");
+        
+    }
+
+    root.current->map_valid=0;
+    root.current->lines_valid=0;
+    root.current->segs_valid=0;
+    root.current->turns_valid=0;
+   
+    if (!calc_message->visible()){
+        warning_map->show();
+    }
+    warning_map->redraw();
+    warning_map->parent()->redraw();
+    win->redraw();
+
+    metrics_mutex.lock();
+
+    root.current->plot_metric.clear();
+    root.current->max_plot_metric = 0.0;
+    root.current->min_plot_metric = 0.0;
+    root.current->route.clear();
+
+    metrics_mutex.unlock();
+
+    draw->redraw();
+
+}
 
 void base::reset_view_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
@@ -1169,11 +1244,11 @@ void base::reset_view() {
     
 }
 
-
 void base::colour_cb_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
     program->colour_cb();
 }
+
 void base::colour_cb() {
     
     container* root = &(this->root);
@@ -1380,19 +1455,6 @@ void base::hide(Fl_Widget* widget){
     widget->deactivate();
 }
 
-void base::warning_map_cb_static(Fl_Widget*, void* data) {
-    base* program = static_cast<base*> (data);
-    program->warning_map_cb();
-}
-
-
-void base::warning_map_cb() {
-    
-    container* root = &(this->root);
-    root->current->route.clear();
-    draw->show_warning_map();
-}
-
 void base::building_data_choice_cb_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
     program->building_data_choice_cb();
@@ -1400,12 +1462,10 @@ void base::building_data_choice_cb_static(Fl_Widget*, void* data) {
 
 void base::building_data_choice_cb() {
     
-    
     container* root = &(this->root);
     root->current_data = root->comp_buildings[building_data_choice->value()];
     redraw_data();
-    
-    
+       
 }
 
 void base::building_choice_cb_static(Fl_Widget*, void* data) {
@@ -1431,15 +1491,12 @@ void base::building_choice_cb() {
     }
     
     old_val = building_choice->value();
-    
-    
+        
 }
-
 
 void base::quit_callback(Fl_Widget*, void*) {
     
     quit_win->show();
-    
     
 }
 
@@ -1473,16 +1530,11 @@ void base::main_callback() {
     
 }
 
-
-
 void base::idle_load_static(void* data) {
     base* program = static_cast<base*> (data);
     program->idle_load();
 
 }
-
-
-
 
 void base::idle_load(){
 

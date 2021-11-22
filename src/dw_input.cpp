@@ -1473,7 +1473,7 @@ int draw_window::handle(int e) {
                             program->prepare_undo();
                         }
                         set_first=0;
-                        show_warning_visibility();
+                        program->show_warning_visibility();
                     }
                     
                     snap_point = -1;
@@ -1553,7 +1553,7 @@ int draw_window::handle(int e) {
                             }
                         }
                                        
-                        show_warning_map();
+                        program->show_warning_map();
 
                         program->prepare_undo();
                         
@@ -1615,7 +1615,7 @@ int draw_window::handle(int e) {
                                             current->adj_list.push_back(temp);
                                             program->adj_mutex.unlock();
 
-                                            show_warning_map();
+                                            program->show_warning_map();
                                             program->prepare_undo();
                                         }
                                         
@@ -1814,63 +1814,63 @@ int draw_window::handle(int e) {
                                     program->locations_mutex.lock();
                                     current->locations[0].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 2:
                                     program->locations_mutex.lock();
                                     current->locations[1].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 3:
                                     program->locations_mutex.lock();
                                     current->locations[2].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 4:
                                     program->locations_mutex.lock();
                                     current->locations[3].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 5:
                                     program->locations_mutex.lock();
                                     current->locations[4].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 6:
                                     program->locations_mutex.lock();
                                     current->locations[5].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 7:
                                     program->locations_mutex.lock();
                                     current->locations[6].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 8:
                                     program->locations_mutex.lock();
                                     current->locations[7].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                                 case 9:
                                     program->locations_mutex.lock();
                                     current->locations[8].push_back(temp);
                                     program->locations_mutex.unlock();
-                                    show_warning_visibility();
+                                    program->show_warning_visibility();
                                     program->prepare_undo();
                                     break;
                             }
@@ -1994,10 +1994,10 @@ int draw_window::handle(int e) {
                     
                     
                     if (moved==1){
-                        show_warning_visibility();
+                        program->show_warning_visibility();
                     }
                     else if(moved==2){
-                        show_warning_map();
+                        program->show_warning_map();
                     }
 
                 }                

@@ -42,20 +42,16 @@ std::istream& base::tool_getline(std::istream& is, std::string& t)
     }
 }
 
-
 int base::readin_walls(std::vector<wall> &standing,std::vector<wall>& sitting,int wall_type, int wall_floor,std::string str_desks){
-    
     
     std::stringstream output;
     
     std::ifstream in_data;
     std::string str;
     
-    
     output.str("");output<<"OPENING: "<<str_desks<<std::endl;
     push_time();
     push_output(output.str());
-    
     
     try {
         in_data.open(str_desks.c_str());
@@ -69,7 +65,6 @@ int base::readin_walls(std::vector<wall> &standing,std::vector<wall>& sitting,in
         return 1;
     }
     
-    
     // determine format
     try{
         tool_getline(in_data, str);
@@ -82,17 +77,13 @@ int base::readin_walls(std::vector<wall> &standing,std::vector<wall>& sitting,in
         
         return 1;
     }
-    
-    
-    
+       
     for (unsigned int i=0;i<str.size();i++){
         if ((str[i]==',')||(str[i]==';')||(str[i]=='[')||(str[i]=='{')||(str[i]=='(')||(str[i]=='\t')){
             str[i]=' ';
         }
         
     }
-    
-    
     
     int format =-1;
     double x1,x2,x3,x4;
@@ -109,8 +100,7 @@ int base::readin_walls(std::vector<wall> &standing,std::vector<wall>& sitting,in
     else{
         format=0;
     }
-        
-        
+            
         in_data.close();
         
         if (format!=0){
@@ -375,7 +365,8 @@ void* base::read_points_pass(){
     
     Fl::awake();
     root->calculating=FREE;
-    calc_message_off();
+    //calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     Fl::awake(&redraw_from_thread,this);
 
     return NULL;
@@ -411,7 +402,8 @@ void* base::read_matrix_pass(){
     Fl::unlock();
     Fl::awake();
     root->calculating=FREE;
-    calc_message_off();
+    //calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     Fl::awake(&redraw_from_thread,this);
 
     return NULL;
@@ -486,7 +478,8 @@ void* base::read_adj_list_pass(){
     Fl::unlock();
     Fl::awake(&redraw_from_thread,this);
     root->calculating=FREE;
-    calc_message_off();
+    //calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     
     return NULL;
 }
@@ -583,7 +576,8 @@ void* base::read_locations_pass(int loc_index){
     
     root->calculating=FREE;
     Fl::awake(&redraw_from_thread,this);
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
+    //calc_message_off();
     return NULL;
     
 }

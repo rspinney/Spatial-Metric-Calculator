@@ -857,8 +857,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             root->current->segs_valid=0;
             root->current->turns_valid=0;
             root->calculating=FREE;
-            program->calc_message_off();
             Fl::unlock();
+            Fl::awake(base::calc_message_off_cb,program);
 
             return NULL;
         }
@@ -900,8 +900,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             root->current->segs_valid=0;
             root->current->turns_valid=0;
             root->calculating=FREE;
-            program->calc_message_off();
             Fl::unlock();
+            Fl::awake(base::calc_message_off_cb,program);
 
             return NULL;
         }
@@ -930,8 +930,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
             root->current->segs_valid=0;
             root->current->turns_valid=0;
             root->calculating=FREE;
-            program->calc_message_off();
             Fl::unlock();
+            Fl::awake(base::calc_message_off_cb,program);
 
             return NULL;
         }
@@ -996,8 +996,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
                     root->current->segs_valid=0;
                     root->current->turns_valid=0;
                     root->calculating=FREE;
-                    program->calc_message_off();         
                     Fl::unlock();
+                    Fl::awake(base::calc_message_off_cb,program);
 
                     return NULL;
                 }
@@ -1103,8 +1103,8 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
                     root->current->segs_valid=0;
                     root->current->turns_valid=0;
                     root->calculating=FREE;
-                    program->calc_message_off();
                     Fl::unlock();
+                    Fl::awake(base::calc_message_off_cb,program);
 
                     return NULL;
                 }
@@ -1238,9 +1238,9 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
                     root->current->map_valid=0;
                     root->current->segs_valid=0;
                     root->current->turns_valid=0;
-                    root->calculating=FREE;
-                    program->calc_message_off();        
+                    root->calculating=FREE;    
                     Fl::unlock();
+                    Fl::awake(base::calc_message_off_cb,program);
 
                     return NULL;
                 }
@@ -1387,7 +1387,7 @@ void* map_structures::calculate_distances_paths(void* /*data*/){
         root->current->turns_valid=0;   
     }
     root->calculating=FREE;
-    program->calc_message_off();
+    Fl::awake(base::calc_message_off_cb,program);
     Fl::lock();
     
     if (program->floor_choice->value()>0){
@@ -1526,9 +1526,11 @@ void* map_structures::calculate_lines(void* /*data*/){
         if (program->root.killthread.get()){
             program->push_time();
             program->push_output("Cancelled.\n");
+            Fl::lock();
             program->root.current->lines_valid=0;
             program->root.calculating=FREE;
-            program->calc_message_off();
+            Fl::unlock();
+            Fl::awake(base::calc_message_off_cb,program);
             
             return NULL;
         }
@@ -1586,11 +1588,11 @@ void* map_structures::calculate_lines(void* /*data*/){
     program->push_output("...done.\n");
     
     program->root.current->map.line_segments=line_segments;
-    
+    Fl::lock();
     program->root.current->lines_valid=1;
     program->root.calculating=FREE;
-    program->calc_message_off();
-
+    Fl::unlock();
+    Fl::awake(base::calc_message_off_cb,program);
     
     return NULL;
     

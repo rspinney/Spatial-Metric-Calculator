@@ -480,7 +480,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc0->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"origin marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -492,7 +492,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc1->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 1 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -504,7 +504,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc2->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 2 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -516,7 +516,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc3->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 3 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -528,7 +528,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc4->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 4 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -540,7 +540,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc5->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 5 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -552,7 +552,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc6->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 6 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -564,7 +564,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc7->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 7 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -576,7 +576,7 @@ void base::clear_last_location_cb(){
                     locations_mutex.lock();
                     loc8->pop_back();
                     locations_mutex.unlock();
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     s<<"destination 8 marker."<<std::endl;
                     push_time();
                     push_output(s.str());
@@ -592,7 +592,7 @@ void base::clear_last_location_cb(){
                         walls_mutex.lock();
                         walls_sitting.pop_back();
                         walls_mutex.unlock();
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
                         s<<"low barrier."<<std::endl;
                         push_time();
                         push_output(s.str());
@@ -609,7 +609,7 @@ void base::clear_last_location_cb(){
                         walls_mutex.lock();
                         walls_standing.pop_back();
                         walls_mutex.unlock();
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
                         s<<"high barrier."<<std::endl;
                         push_time();
                         push_output(s.str());
@@ -667,7 +667,7 @@ void base::clear_last_location_cb(){
                     warning_map_cb();
 
                     if (loc_change>0){
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
                     }
 
                     prepare_undo();
@@ -876,7 +876,7 @@ void base::clear_selected_location_cb(){
                     draw->redraw();
                     
                     
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     prepare_undo();
                     push_time();
                     push_output(s.str());
@@ -893,7 +893,7 @@ void base::clear_selected_location_cb(){
                     draw->deselect();
                     draw->redraw();
                     
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                     prepare_undo();
                     push_time();
                     push_output(s.str());
@@ -972,7 +972,7 @@ void base::clear_selected_location_cb(){
                 warning_map_cb();
 
                 if (loc_change>0){
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
 
                 draw->redraw();
@@ -1064,7 +1064,7 @@ void base::clear_selected_location_cb(){
                     ss<<" selected destination "<<s<<" location markers removed."<<std::endl;
                 }
 
-                draw->show_warning_visibility();
+                show_warning_visibility();
 
                 push_time();
                 push_output(ss.str());
@@ -1100,7 +1100,7 @@ void base::clear_selected_location_cb(){
                     ss<<" selected high barriers removed."<<std::endl;   
                 }
 
-                draw->show_warning_visibility();
+                show_warning_visibility();
 
                 push_time();
                 push_output(ss.str());
@@ -1188,7 +1188,7 @@ void base::clear_selected_location_cb(){
                 warning_map_cb();
 
                 if (loc_change>0){
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
 
                 std::stringstream ss;
@@ -1287,7 +1287,7 @@ void base::clear_locations_cb(){
                         loc0->clear();
                         std::vector<location>().swap(*loc0);
                         locations_mutex.unlock();
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
 
                         push_time();
                         push_output("All origin location markers removed.\n");
@@ -1312,7 +1312,7 @@ void base::clear_locations_cb(){
                         }
                         push_time();
                         push_output("All low barriers removed.\n");
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
                         prepare_undo();
                     }
                     else{
@@ -1331,7 +1331,7 @@ void base::clear_locations_cb(){
                         }
                         push_time();
                         push_output("All high barriers removed.\n");
-                        draw->show_warning_visibility();
+                        show_warning_visibility();
                         prepare_undo();
                     }
                     else{
@@ -1448,7 +1448,7 @@ void base::clear_locations_cb(){
                             loc->clear();
                             std::vector<location>().swap(*loc);
                             locations_mutex.unlock();
-                            draw->show_warning_visibility();
+                            show_warning_visibility();
                             std::stringstream ss;
                             ss<<"All destination "<<selector<<" location markers removed."<<std::endl;
                             push_time();
@@ -1487,7 +1487,7 @@ void base::clear_locations_cb(){
                 std::stringstream s;
                 if (count){
                     s<<"All origin location markers, totalling "<<count<<" markers, removed from floor "<<floor<<"."<<std::endl;
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
                 else{
                     s<<"No origin markers to delete on floor "<<floor<<"."<<std::endl;
@@ -1515,7 +1515,7 @@ void base::clear_locations_cb(){
                 std::stringstream s;
                 if (count){
                     s<<"All destination "<< selector <<" location markers, totalling "<<count<<" markers, removed from floor "<<floor<<"."<<std::endl;
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
                 else{
                     s<<"No origin markers to delete on floor "<<floor<<"."<<std::endl;
@@ -1541,7 +1541,7 @@ void base::clear_locations_cb(){
                 std::stringstream s;
                 if (count){
                     s<<"All "<<count<<" low barriers removed from floor "<<floor<<"."<<std::endl;
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
                 else{
                     s<<"No low barriers to delete on floor "<<floor<<"."<<std::endl;
@@ -1567,7 +1567,7 @@ void base::clear_locations_cb(){
                 std::stringstream s;
                 if (count){
                     s<<"All "<<count<<" high barriers removed from floor "<<floor<<"."<<std::endl;
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
                 else{
                     s<<"No high barriers to delete on floor "<<floor<<"."<<std::endl;
@@ -1591,7 +1591,7 @@ void base::clear_locations_cb(){
                 warning_map_cb();
 
                 if (removed[1]>0){
-                    draw->show_warning_visibility();
+                    show_warning_visibility();
                 }
 
                 draw->redraw();

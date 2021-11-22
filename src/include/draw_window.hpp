@@ -320,10 +320,8 @@ public:
     static void mouseless_zoom_in_entry(Fl_Widget*, void*);
     static void mouseless_zoom_out_entry(Fl_Widget*, void*);
     
-    void show_warning_visibility();
-    
-    void show_warning_map();
-    
+    //void show_warning_visibility();  
+    //void show_warning_map();
         
     int is_valid(){
         if (valid()){

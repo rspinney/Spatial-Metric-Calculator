@@ -50,7 +50,6 @@ void min_heap::send_down(int index)
     
     int min_index = index;
     
-    
     if (data[index].weight > data[left_child_index].weight)
     {
         min_index = left_child_index;
@@ -60,7 +59,6 @@ void min_heap::send_down(int index)
     {
         min_index = right_child_index;
     }
-    
     
     if(min_index != index)
     {
@@ -94,7 +92,6 @@ void min_heap::send_up(int index)
         index_back[data[index].index]=index;
         
         send_up(parent_index);
-
 
     }
 }

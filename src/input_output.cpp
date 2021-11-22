@@ -21,11 +21,7 @@ int base::save_binary(const file_in_out* object){
 
 int base::read_binary(file_in_out* object){
     
- 
-
-    
     std::ifstream ifs((*object).file.c_str());
-    
     
     try
     {
@@ -50,9 +46,6 @@ int base::read_binary(file_in_out* object){
         return 1;
     }
     
-    
-
-    
     return 0;
     
 }
@@ -62,7 +55,6 @@ int base::read_binary(file_in_out* object){
 void base::save_binary_cb_static(Fl_Widget*, void* data){
     
     base* program = static_cast<base*> (data);
-    
 
     program->save_binary_cb();
 }
@@ -71,8 +63,6 @@ void base::save_binary_cb_static(Fl_Widget*, void* data){
 void base::save_binary_cb(){
 
     if (!root.calculating){
-        
-        
         
         Fl_Native_File_Chooser fnfc;
         
@@ -208,7 +198,7 @@ void* base::save_binary_thread(){
     push_output(s.str());
     
     root.calculating=FREE;
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     return NULL;   
 }
@@ -532,6 +522,6 @@ void* base::read_binary_thread(){
     }
     
     root.calculating=FREE;
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     return NULL;
 }

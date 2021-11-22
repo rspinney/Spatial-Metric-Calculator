@@ -309,7 +309,7 @@ void base::remove_vertex_cb(){
         warning_map_cb();
 
         if (loc_change>0){
-            draw->show_warning_visibility();
+            show_warning_visibility();
         }
 
         prepare_undo();

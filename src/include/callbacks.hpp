@@ -99,6 +99,8 @@ public:
 public:
 void calc_message_on();
 void calc_message_off();
+static void calc_message_off_cb(void*);
+static void calc_message_on_cb(void*);
 
 std::istream& tool_getline(std::istream& , std::string& );
 
@@ -270,6 +272,7 @@ static void three_d_cb_static(Fl_Widget*,void*);
 void three_d_cb();
 void set_floor_choice();
 void reset_floor_choice();
+static void quiet_reset(void*);
 static void undo_static(Fl_Widget*,void*);
 void undo(int);
 static void redo_static(Fl_Widget*,void*);
@@ -522,7 +525,10 @@ void reset_view();
 
 static void kill_thread_static(Fl_Widget*, void* data);
 void kill_thread();
-
+public:
+void show_warning_map();
+void show_warning_visibility();
+private:
 static void show_warning_map_cb(void* data);
 static void show_warning_vis_cb(void* data);
     

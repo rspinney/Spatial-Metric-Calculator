@@ -12,9 +12,11 @@
 #if __APPLE__
 	#define sysoffset 20
 	#define SYS_ZOOM 1.0
+	#define ALT_COMMAND FL_COMMAND+FL_ALT
 #else
 	#define sysoffset 0
 	#define SYS_ZOOM 3.0
+	#define ALT_COMMAND FL_ALT
 #endif
 
 #define THEME 0 //set theme - 0: PLASTIC or 1: GTK

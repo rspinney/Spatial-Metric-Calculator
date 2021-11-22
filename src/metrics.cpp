@@ -51,8 +51,7 @@ double map_structures::seg_dist_3d(int& q1,int& q2,const map_structures* map,con
     vec p2 = points[map->links[q1].end];
     vec p3 = points[map->links[q2].start];
     vec p4 = points[map->links[q2].end];
-    
-    
+      
     return sqrt( (0.5*(p1.x+p2.x) - 0.5*(p3.x+p4.x))*(0.5*(p1.x+p2.x) - 0.5*(p3.x+p4.x))   +     (0.5*(p1.y+p2.y) - 0.5*(p3.y+p4.y))*(0.5*(p1.y+p2.y) - 0.5*(p3.y+p4.y))     +     (0.5*(p1.z+p2.z) - 0.5*(p3.z+p4.z))*(0.5*(p1.z+p2.z) - 0.5*(p3.z+p4.z)));
     
 }
@@ -78,8 +77,7 @@ void map_structures::power_iteration (std::vector<double>& eigenvector,graph& G,
     int count=0;
     
     while (acc>tol){
-        
-        
+            
         count++;      
         
         if (root->killthread.get()){
@@ -97,7 +95,6 @@ void map_structures::power_iteration (std::vector<double>& eigenvector,graph& G,
             }
             norm+=temp[i]*temp[i];
         }
-        
         
         norm=1.0/sqrt(norm);
         
@@ -365,9 +362,6 @@ std::vector<std::vector<route_weight_number> >* map_structures::desk_choice_new(
     
     return choice;
 }
-
-
-
 
 double map_structures::desk_custom(const std::vector<vec>& points,
                                    const std::vector<location>& desks, 

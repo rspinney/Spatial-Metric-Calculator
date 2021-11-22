@@ -145,73 +145,6 @@ draw_window::draw_window(int X, int Y, int W, int H, const char *L, container* r
 
 }
 
-
-//These need to be folded into base class at some point
-void draw_window::show_warning_visibility(){
-        
-    if (root->current->vis_valid){
-        program->push_time();
-        program->push_output("WARNING: Visibility constructs may have changed.\n------------------- >> Displaying/using visibility in metrics will incur additional computation steps.\n");
-    }
-
-    root->current->vis_valid=0;
-    program->show_visibility->value(0);    
-    if (!program->calc_message->visible()){
-        program->warning_visibility->show();
-    }
-    program->warning_visibility->redraw();
-    program->warning_visibility->parent()->redraw();
-    program->win->redraw();
-
-
-    program->metrics_mutex.lock();
-
-    program->root.current->plot_metric.clear();
-    root->current->max_plot_metric = 0.0;
-    root->current->min_plot_metric = 0.0;
-
-    program->metrics_mutex.unlock();
-    
-}
-
-void draw_window::show_warning_map(){
-    
-    
-    
-    if ((root->current->map_valid)||(root->current->lines_valid)){
-    
-        program->push_time();    
-        program->push_output("WARNING: Spatial graph may have changed.\n------------------- >> Subsequent route/metric calculation will incur additional computation steps.\n");
-        
-    }
-
-    root->current->map_valid=0;
-    root->current->lines_valid=0;
-    root->current->segs_valid=0;
-    root->current->turns_valid=0;
-   
-    if (!program->calc_message->visible()){
-        program->warning_map->show();
-    }
-    program->warning_map->redraw();
-    program->warning_map->parent()->redraw();
-    program->win->redraw();
-
-    program->metrics_mutex.lock();
-
-    program->root.current->plot_metric.clear();
-    root->current->max_plot_metric = 0.0;
-    root->current->min_plot_metric = 0.0;
-    program->root.current->route.clear();
-
-    program->metrics_mutex.unlock();
-
-    this->redraw();
-
-}
-
-
-
 void draw_window::draw() { 
 
     int do_capture=0;
@@ -301,17 +234,15 @@ void draw_window::draw() {
 
     //capture mouse position
     
-    if (program->three_d_choice->value()<3){
-        program->plans_mutex.lock();
+    program->plans_mutex.lock();
+    if (program->three_d_choice->value()<3){    
         draw_floorplan_gen(back_z+std::max(10.0,0.001*fabs(maxx_overall-minx_overall)));
-        program->plans_mutex.unlock();
     }
     else if (!root->floor_ceil){
-        program->plans_mutex.lock();
         draw_floorplan_gen(back_z+std::max(10.0,0.002*fabs(maxx_overall-minx_overall)));
-        program->plans_mutex.unlock();
     }
-            
+    program->plans_mutex.unlock();
+         
 
     if (program->show_floor_areas->value()){
         program->areas_mutex.lock();
@@ -392,11 +323,9 @@ void draw_window::draw() {
     if ((!do_capture)&&(!snapon)) drawcursor(fore_z_ext);
             
     if (do_capture) capture_screen();
-
     
     if (first_draw){
         first_draw=0; //finished first draw
     }
 
 }
-

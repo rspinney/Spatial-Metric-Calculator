@@ -106,7 +106,7 @@ void base::floorplan_to_map_thread(){
 
         root->killthread.reset();
 
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         Fl::lock();
         root->calculating=FREE;
@@ -144,13 +144,13 @@ void base::floorplan_to_map_thread(){
   
 
     prepare_undo();
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     Fl::lock();
     root->calculating=FREE;
-    draw->show_warning_map();
+    //show_warning_map();
     Fl::unlock();
-
+    Fl::awake(show_warning_map_cb,this); 
     Fl::awake(&redraw_from_thread,this);
 
 }
@@ -335,7 +335,7 @@ void base::floorplan_to_areas_thread(){
 
         root->killthread.reset();
 
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         Fl::lock();
         root->calculating=FREE;
@@ -353,7 +353,7 @@ void base::floorplan_to_areas_thread(){
 
         if (root->killthread.get()){
             root->killthread.reset();
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             Fl::lock();
             root->calculating=FREE;
             Fl::unlock();
@@ -544,7 +544,7 @@ void base::floorplan_to_areas_thread(){
   
 
     prepare_undo();
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     Fl::lock();
     root->calculating=FREE;
@@ -947,7 +947,7 @@ void* base::open_dxf_thread(){
                 }
             }
 
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             Fl::lock();
             root.calculating=FREE;
             draw->first_draw=1;
@@ -2261,7 +2261,7 @@ void* base::read_walls_pass(){
     
     if (!i) Fl::awake(show_warning_vis_cb,this);
     root.calculating=FREE;
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     return NULL;
     
 }

@@ -12,7 +12,6 @@ void base::clear_and_prepare_undo_from_thread(void* data){
     program->clear_and_prepare_undo();
 }
 
-
 void base::clear_and_prepare_undo(){
 
     container* root = &(this->root);
@@ -25,15 +24,12 @@ void base::clear_and_prepare_undo(){
 }
 void base::prepare_undo(){
     
-
     container* root = &(this->root);
 
     root->calculating = PREP_UNDO;
     calc_message_on();
 
-
     {
-
         if (root->current->current_frame < static_cast<int>(root->current->memento.size())){
             std::deque<building_base>::iterator start, end;
             start=root->current->memento.begin()+root->current->current_frame+1;
@@ -51,9 +47,14 @@ void base::prepare_undo(){
 
         root->calculating=FREE;
         calc_message_off();
-
     }
     
+}
+
+void base::quiet_reset(void* data) {
+    base* program = static_cast<base*> (data);
+    program->undo(0);
+    program->redo(0);
 }
 
 void base::undo_static(Fl_Widget*, void* data) {
@@ -62,7 +63,7 @@ void base::undo_static(Fl_Widget*, void* data) {
 }
 
 
-void base::undo(int report_to_user){
+void base::undo(int report_to_user){ //should always be run from main thread
 
     if (root.calculating){
 
@@ -74,15 +75,12 @@ void base::undo(int report_to_user){
         return;
 
     }
-
-    
+   
     container* root = &(this->root);
-
 
     if (root->current->current_frame<=0) return;
 
     --root->current->current_frame;
-
 
     int i=floor_choice->value();
     
@@ -148,14 +146,13 @@ void base::undo(int report_to_user){
 
         find_floor_extremes();
 
-        draw->show_warning_visibility();
-        draw->show_warning_map();
+        show_warning_visibility();
+        show_warning_map();
 
         Fl::unlock();
 
     }
-    
-    
+       
 }
 
 void base::redo_static(Fl_Widget*, void* data) {
@@ -180,7 +177,6 @@ void base::redo(int report_to_user){
     if (root.current->current_frame + 1 < static_cast<int>(root.current->memento.size()) ){
 
         ++root.current->current_frame;
-
 
         int i=floor_choice->value();
 
@@ -242,19 +238,19 @@ void base::redo(int report_to_user){
 
         find_floor_extremes();
 
-        draw->show_warning_visibility();
-        draw->show_warning_map();
+        show_warning_visibility();
+        show_warning_map();
 
         Fl::unlock();
     }
    
 }
 
-
 void base::memento_depth_win_cb_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
     program->memento_depth_win_cb();
 }
+
 void base::memento_depth_win_cb(){
 
     std::stringstream s;
@@ -271,7 +267,6 @@ void base::change_memento_depth_cb_static(Fl_Widget*, void* data) {
 
 
 void base::change_memento_depth_cb(){
-
 
     std::stringstream s;
     s<<memento_depth_input->value();
@@ -314,8 +309,6 @@ void base::change_memento_depth_cb(){
 
             for (unsigned int ii=0; ii<NUM_BUILDINGS;ii++){
 
-                
-
                 int front_count = 0;
 
                 while (static_cast<int>(root.comp_buildings[ii]->memento.size()) > MEMENTO_DEPTH){
@@ -327,7 +320,6 @@ void base::change_memento_depth_cb(){
                         break;
                     }
                 }
-
                
                 int back_count = 0;
 
@@ -336,7 +328,6 @@ void base::change_memento_depth_cb(){
                     root.comp_buildings[ii]->memento.pop_back();
                     back_count++;
                 }
-
 
                 if ((front_count>0)||(back_count>0)){
 
@@ -357,7 +348,6 @@ void base::change_memento_depth_cb(){
                     push_time();
                     push_output(s.str());
 
-
                     s.str("");
                     s<<"Removed "<<back_count<<" frame(s) from the redo end."<<std::endl;
 
@@ -370,19 +360,16 @@ void base::change_memento_depth_cb(){
         }
         
 
-
     }
 
     memento_depth_win->hide();
     return;
 }
 
-
 void base::close_memento_depth_win_static(Fl_Widget*, void* data) {
     base* program = static_cast<base*> (data);
     program->close_memento_depth_win();
 }
-
 
 void base::close_memento_depth_win(){
 

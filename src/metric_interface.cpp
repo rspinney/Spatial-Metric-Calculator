@@ -1027,7 +1027,6 @@ void* base::custom_metric_thread(){
         std::stringstream s;
         s<<eig_tol->value();
 
-        
         try{
 
             char * e;
@@ -1045,9 +1044,7 @@ void* base::custom_metric_thread(){
             push_time();
             push_output("Error reading in eigenvalue centrality tolerance - setting to default value of 0.001.\n");      
             tol = 0.0001;
-        }
-
-        
+        }  
 
     }
     
@@ -1056,7 +1053,8 @@ void* base::custom_metric_thread(){
         push_time();
         push_output("No negative metric constraints allowed! Metric computation cancelled.\n");
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         return NULL;
 
@@ -1066,7 +1064,8 @@ void* base::custom_metric_thread(){
         push_time();
         push_output("No negative metric constraints allowed! Metric computation cancelled.\n");
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         return NULL;
 
@@ -1076,7 +1075,8 @@ void* base::custom_metric_thread(){
         push_time();
         push_output("Range 2 value must be greater than range 1 value! Metric computation cancelled.\n");
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         return NULL;
 
@@ -1086,7 +1086,8 @@ void* base::custom_metric_thread(){
         push_time();
         push_output("No negative iteration values allowed! Metric computation cancelled.\n");
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         return NULL;
 
@@ -1096,7 +1097,8 @@ void* base::custom_metric_thread(){
         push_time();
         push_output("No negative tolerances allowed! Metric computation cancelled.\n");
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
 
         return NULL;
 
@@ -1118,7 +1120,8 @@ void* base::custom_metric_thread(){
          (force_create_button->value()))
     {
         root.calculating=CALC_METRIC;
-        calc_message_on();
+        //calc_message_on();
+        Fl::awake(calc_message_on_cb,this);
         root.current->map.clear();
         root.current->map.calculate_distances_paths(this);
         root.calculating=CALC_METRIC;
@@ -1126,7 +1129,8 @@ void* base::custom_metric_thread(){
         if (root.calculating==FREE){
             root.killthread.reset();
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             return NULL;
         }
 
@@ -1135,7 +1139,8 @@ void* base::custom_metric_thread(){
             push_output("Construction of graph structures failed - metric calculation cancelled.\n");
             root.killthread.reset();
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             return NULL;
         }
     }
@@ -1143,7 +1148,8 @@ void* base::custom_metric_thread(){
     if (root.killthread.get()){
         root.killthread.reset();
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
@@ -1153,7 +1159,8 @@ void* base::custom_metric_thread(){
          (force_visibility_button->value()))
     {
         root.calculating=CALC_METRIC;
-        calc_message_on();
+        //calc_message_on();
+        Fl::awake(calc_message_on_cb,this);
         visibility_calc1();
         root.calculating=CALC_METRIC;
         if  (!root.current->vis_valid){
@@ -1161,7 +1168,8 @@ void* base::custom_metric_thread(){
             push_output("Construction of visibility data failed - metric calculation cancelled.\n");
             root.killthread.reset();
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             return NULL;
         }
     }
@@ -1170,14 +1178,16 @@ void* base::custom_metric_thread(){
     if (root.killthread.get()){
         root.killthread.reset();
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
     if  ((dest_is_lines)&&((!root.current->lines_valid)||(!root.current->map_valid)))
     {
         root.calculating=CALC_METRIC;
-        calc_message_on();
+        //calc_message_on();
+        Fl::awake(calc_message_on_cb,this);
         root.current->map.calculate_lines_static(this);
         root.calculating=CALC_METRIC;
         
@@ -1186,7 +1196,8 @@ void* base::custom_metric_thread(){
             push_output("Construction of turnless lines failed - metric calculation cancelled.\n");
             root.killthread.reset();
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             return NULL;
         }
     }
@@ -1194,12 +1205,14 @@ void* base::custom_metric_thread(){
     if (root.killthread.get()){
         root.killthread.reset();
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
     
 
-    calc_message_on();
+    //calc_message_on();
+    Fl::awake(calc_message_on_cb,this);
 
     ////////////////// END PRE-REQUISITE CALCULATIONS ///////////////////////////////
 
@@ -1260,7 +1273,8 @@ void* base::custom_metric_thread(){
                 push_time();
                 push_output("Input error. Check selectors and try again.\n");
                 root.calculating=FREE;
-                calc_message_off();
+                //calc_message_off();
+                Fl::awake(calc_message_off_cb,this);
 
                 return NULL;
 
@@ -1277,7 +1291,8 @@ void* base::custom_metric_thread(){
         }
         else{
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
 
             return NULL;
 
@@ -1285,7 +1300,8 @@ void* base::custom_metric_thread(){
     }
     else{
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
     
@@ -1319,13 +1335,12 @@ void* base::custom_metric_thread(){
             push_output("Failed. No graph constructs.\n");
         }
         root.calculating=FREE;
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
-    
     std::stringstream output;
-        
     
     std::vector<std::vector<route_weight_number> > choice;
     
@@ -1335,11 +1350,8 @@ void* base::custom_metric_thread(){
     
     ERROR_CODE errors;
 
-
-
     if ((choice3==9)||(choice3==10)||(choice3==11)){
         
-
         std::vector<std::vector<route_weight_number> >* temp = map.desk_choice_new(&choice,&map,choice2,choice8,iter,&root,errors,do_cache);
         
         if (do_cache){
@@ -1374,7 +1386,8 @@ void* base::custom_metric_thread(){
         root.calculating=FREE;
         push_time();
         push_output("No graph constructs! Cancelled.\n");
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
@@ -1383,15 +1396,11 @@ void* base::custom_metric_thread(){
         root.calculating=FREE;
         push_time();
         push_output("Cancelled.\n");
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
  
-
-    
-
-    
-
     if (choice3==12){
         
         int ss;
@@ -1417,12 +1426,12 @@ void* base::custom_metric_thread(){
             push_time();
             push_output("Cancelled.\n");
             root.calculating=FREE;
-            calc_message_off();
+            //calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             root.killthread.reset();
             
             return NULL;
         }
-        
      
         push_time();
         push_output("Starting metric calculation...\n");
@@ -1565,7 +1574,8 @@ void* base::custom_metric_thread(){
                 root.calculating=FREE;
                 root.killthread.reset();
                 Fl::unlock();
-                calc_message_off();
+                //calc_message_off();
+                Fl::awake(calc_message_off_cb,this);
 
                 return NULL;
             }
@@ -1657,13 +1667,10 @@ void* base::custom_metric_thread(){
 
     Fl::unlock();
     
-    
-    
     int ch = metric_slot_choice->value();
     
     if ((ch>=0)&&(ch<static_cast<int>(root.current->metrics.size()))){
         
-
         double min=0,max=0;
         
         if(custom_metric.size()>0){
@@ -1683,12 +1690,10 @@ void* base::custom_metric_thread(){
         root.current->max_plot_metric = max;
         root.current->min_plot_metric = min;
 
-
         root.current->plot_metric=custom_metric;
         root.current->plot_metric_des = temp_des;
         root.current->metrics[ch]=std::move(custom_metric);
         root.current->metric_des[ch]=std::move(temp_des);
-
 
         metrics_mutex.unlock();
 
@@ -1725,7 +1730,6 @@ void* base::custom_metric_thread(){
         root.current->metrics.push_back(std::move(custom_metric));
         root.current->metric_des.push_back(std::move(temp_des));
 
-
         metrics_mutex.unlock();
 
         Fl::lock();
@@ -1740,7 +1744,8 @@ void* base::custom_metric_thread(){
         Fl::lock();
         root.calculating=FREE;
         Fl::unlock();
-        calc_message_off();
+        //calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
@@ -1751,41 +1756,41 @@ void* base::custom_metric_thread(){
 
     Fl::awake(&redraw_from_thread,this);
 
-    calc_message_off();
+    //calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     return NULL;
 
 }
 
 
-void base::create_structures_static(Fl_Widget*, void* data) {
-    base* program = static_cast<base*> (data);
-    program->create_structures();
-}
+// void base::create_structures_static(Fl_Widget*, void* data) {
+//     base* program = static_cast<base*> (data);
+//     program->create_structures();
+// }
 
-void base::create_structures(){
+// void base::create_structures(){
     
-    container* root = &(this->root);
+//     container* root = &(this->root);
     
     
-    if (root->calculating==FREE){
+//     if (root->calculating==FREE){
         
-        root->calculating=CALC_STRUCTURES;
-        calc_message_on();
-        root->current->map.clear();
-        turn_ang->deactivate();
-        zfloor->deactivate();
+//         root->calculating=CALC_STRUCTURES;
+//         calc_message_on();
+//         root->current->map.clear();
+//         turn_ang->deactivate();
+//         zfloor->deactivate();
 
-        test_thread = std::thread(&map_structures::calculate_distances_paths_static,this);
-        test_thread.detach();
+//         test_thread = std::thread(&map_structures::calculate_distances_paths_static,this);
+//         test_thread.detach();
 
-    }
-    else{
-        calc_cb();
-    }
-    
-    
-}
+//     }
+//     else{
+//         calc_cb();
+//     }
+     
+// }
 
 void* base::route_thread_static(void* data){
 
@@ -1845,7 +1850,7 @@ void* base::route_thread(){
     if (root.killthread.get()){
         root.killthread.reset();
         root.calculating=FREE;
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         return NULL;
     }
 
@@ -1872,7 +1877,7 @@ void* base::route_thread(){
     Fl::unlock();
     Fl::awake(&redraw_from_thread,this);
 
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     return NULL;
     

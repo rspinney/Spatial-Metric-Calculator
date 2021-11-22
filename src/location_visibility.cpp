@@ -14,8 +14,7 @@ void base::visibility_cb_static(Fl_Widget*, void* data) {
 
 void base::visibility_cb(){
     
-    THREAD_STATE& calculating = root.calculating;
-    
+    THREAD_STATE& calculating = root.calculating;   
     
     if (calculating == FREE){
         calculating=CALC_VIS;
@@ -135,10 +134,8 @@ void base::vis_calc_for_desks(int id,
             }
             
         }
-
-        
+     
     }
-
     
 }
 
@@ -150,8 +147,7 @@ void* base::visibility_calc1_static(void* data){
 }
 
 void* base::visibility_calc1(){
-    
-    
+        
     container* root = &(this->root); //shadowing "container root"
     
     std::vector<location>& loc0 = root->current->locations[0];
@@ -171,9 +167,6 @@ void* base::visibility_calc1(){
     
     std::stringstream output;
     
-    
-    
-
     if (static_cast<int>(loc0.size())==0){
         
         
@@ -181,8 +174,10 @@ void* base::visibility_calc1(){
         
         push_time();
         push_output(output.str());
+        Fl::lock();
         calculating=FREE;
-        calc_message_off();
+        Fl::unlock();
+        Fl::awake(calc_message_off_cb,this);
      
      
         return NULL;
@@ -405,23 +400,19 @@ void* base::visibility_calc1(){
                         root->killthread.reset();
                         calculating=FREE;
                         Fl::unlock();
-                        calc_message_off();
+                        Fl::awake(calc_message_off_cb,this);
                         
-
                         return NULL;
                     }
 
                 }
                 
             }
-            
-            
+                
         }
-        
         
     }
     stop_console_output();              
-    
     
     //QUICK VIS
     
@@ -429,12 +420,9 @@ void* base::visibility_calc1(){
     
     for (unsigned int i=0;i<loc0.size();i++){
         
-
         loc0[i].quick_vis.clear();
         
-        
         for (unsigned int k=0;k<9;k++){
-            
             
             std::vector<int> temp;
             
@@ -644,7 +632,7 @@ void* base::visibility_calc1(){
     calculating=FREE;
     Fl::unlock();
 
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
     Fl::awake(awake_vis_warning_off,this);
     
     Fl::awake(&check_from_thread,this);

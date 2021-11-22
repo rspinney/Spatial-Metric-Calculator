@@ -546,7 +546,7 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
         Fl::lock();
         root.calculating=FREE;      
         Fl::unlock();
-        calc_message_off();  
+        Fl::awake(calc_message_off_cb,this);  
         return;
     }
 
@@ -558,7 +558,7 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
         Fl::lock();
         root.calculating=FREE;        
         Fl::unlock();
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         
         return;
     }
@@ -593,7 +593,7 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
     
     remove_map_from_floor(delete_floor);
 
-    calc_message_on();
+    Fl::awake(calc_message_on_cb,this);
     
     push_time();
     push_output("...done.\n");
@@ -697,9 +697,10 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
                 root.calculating=FREE;
                 root.killthread.reset();           
                 Fl::unlock();
-                undo(0);
-                redo(0);
-                calc_message_off();
+                Fl::awake(quiet_reset,this);
+                // undo(0);
+                // redo(0);
+                Fl::awake(calc_message_off_cb,this);
                 return;
             }
 
@@ -938,11 +939,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
                 Fl::lock();
                 root.calculating=FREE;
-                calc_message_off();
+                Fl::awake(calc_message_off_cb,this);
                 root.killthread.reset();           
                 Fl::unlock();
-                undo(0);
-                redo(0);
+                // undo(0);
+                // redo(0);
+                Fl::awake(quiet_reset,this);
 
                 return;
             }
@@ -1109,11 +1111,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
         push_output("Out of memory!\n");
         Fl::lock();
         root.calculating=FREE;
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         root.killthread.reset();
         Fl::unlock();
-        undo(0);
-        redo(0);
+        // undo(0);
+        // redo(0);
+        Fl::awake(quiet_reset,this);
         return;
     }
 
@@ -1140,11 +1143,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
             Fl::lock();
             root.calculating=FREE;
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             root.killthread.reset();
             Fl::unlock();
-            undo(0);
-            redo(0);
+            // undo(0);
+            // redo(0);
+            Fl::awake(quiet_reset,this);
             return;
         }
 
@@ -1195,11 +1199,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
             Fl::lock();
             root.calculating=FREE;
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             root.killthread.reset();
             Fl::unlock();
-            undo(0);
-            redo(0);
+            // undo(0);
+            // redo(0);
+            Fl::awake(quiet_reset,this);
             return;
         }
 
@@ -1248,11 +1253,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
         push_output("Out of memory!\n");
         Fl::lock();
         root.calculating=FREE;
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         root.killthread.reset();
         Fl::unlock();
-        undo(0);
-        redo(0);
+        // undo(0);
+        // redo(0);
+        Fl::awake(quiet_reset,this);
         return;
     }
 
@@ -1366,11 +1372,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
             Fl::lock();
             root.calculating=FREE;
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             root.killthread.reset();
             Fl::unlock();
-            undo(0);
-            redo(0);
+            // undo(0);
+            // redo(0);
+            Fl::awake(quiet_reset,this);
 
             return;
         }
@@ -1380,11 +1387,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
             Fl::lock();
             root.calculating=FREE;
-            calc_message_off();
+            Fl::awake(calc_message_off_cb,this);
             root.killthread.reset();
             Fl::unlock();
-            undo(0);
-            redo(0);
+            // undo(0);
+            // redo(0);
+            Fl::awake(quiet_reset,this);
 
             return;
         }
@@ -1443,11 +1451,12 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
         Fl::lock();
         root.calculating=FREE;
-        calc_message_off();
+        Fl::awake(calc_message_off_cb,this);
         root.killthread.reset();
         Fl::unlock();
-        undo(0);
-        redo(0);
+        // undo(0);
+        // redo(0);
+        Fl::awake(quiet_reset,this);
 
         return;
     }
@@ -1485,13 +1494,13 @@ void base::areas_to_points(double density, int use_limit, double limit,int hex) 
 
 
     prepare_undo();
-    calc_message_off();
+    Fl::awake(calc_message_off_cb,this);
 
     Fl::lock();
     root.calculating=FREE;
-    draw->show_warning_map();
+    //show_warning_map();
     Fl::unlock();
-
+    Fl::awake(show_warning_map_cb,this);
     Fl::awake(&redraw_from_thread,this);
 
     return;

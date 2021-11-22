@@ -16,7 +16,6 @@
 #undef max
 
 void draw_window::translate_frustum(){
-    
 
     if ((program->three_d_choice->value()==2)){ //EYE SPACE TRANSFORM
         glTranslatef(-0.5*(minx+maxx),-0.5*(miny+maxy),-z_dist-minz);  //in conjuction with frustum
@@ -33,7 +32,6 @@ void draw_window::translate_frustum(){
             axx=ang_xfp;
             azz=ang_zfp;
             
-        
     }
     //END FRUSTRUM PLACEMENT
 }

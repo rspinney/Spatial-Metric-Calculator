@@ -124,8 +124,6 @@ class base{
 	Fl_Window* memento_depth_win;
 
 
-
-
 	public:
 
 	text_output* data_text;

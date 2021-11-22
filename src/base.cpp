@@ -78,11 +78,11 @@ void base::build_and_run(){
         {"Edit",0,0,0,FL_SUBMENU,0,0,FL_NORMAL_SIZE,menu_color},
         {"Empty entire project slot",FL_COMMAND|'e',clear_building_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Select all edit objects on floor  ",FL_COMMAND+'a',select_all_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},///////
-        {"Edit constructs (mouse-free)",FL_ALT+'e',link_win_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Edit constructs (mouse-free)",ALT_COMMAND+'e',link_win_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Undo",FL_COMMAND|'z',undo_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Redo",FL_COMMAND|'y',redo_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Adjust Undo stack length",0,memento_depth_win_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
-        {"&Cancel ongoing computation",FL_ALT+'c', kill_thread_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"&Cancel ongoing computation",ALT_COMMAND+'c', kill_thread_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Check graph consistency",FL_COMMAND+'j',map_consistency_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {"Generate constructs",0,0,0,FL_SUBMENU,0,0,FL_NORMAL_SIZE,menu_color},                
             {"Floorplans to barriers",0, 0,0,FL_SUBMENU,0,0,FL_NORMAL_SIZE,menu_color},
@@ -95,42 +95,42 @@ void base::build_and_run(){
             {"Floorplan to floorareas",0,floorplan_to_areas_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
             {"Floorareas to spatial graph (Mesh)",0, areas_to_points_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
             {0,0,0,0,0,0,0,0,0},
-        {"Floorplan dialogue",FL_ALT+'f',floorplan_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Metric dialogue",FL_ALT+'m',desk_metric_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Floorplan dialogue",ALT_COMMAND+'f',floorplan_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Metric dialogue",ALT_COMMAND+'m',desk_metric_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {0,0,0,0,0,0,0,0,0},
         {"View",0,0,0,FL_SUBMENU,0,0,FL_NORMAL_SIZE,menu_color},        
         {"Zoom in",FL_COMMAND+']',draw_window::mouseless_zoom_in_entry,this,0,0,0,FL_NORMAL_SIZE,menu_color}, 
         {"Zoom out",FL_COMMAND+'[',draw_window::mouseless_zoom_out_entry,this,0,0,0,FL_NORMAL_SIZE,menu_color},        
         {"Dark mode  ",FL_COMMAND|'i',colour_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},        
-        {"Re-centre/reset view",FL_ALT+'r',reset_view_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Print/export screen",FL_ALT+'p',save_screen_static,this,FL_MENU_DIVIDER,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Re-centre/reset view",ALT_COMMAND+'r',reset_view_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Print/export screen",ALT_COMMAND+'p',save_screen_static,this,FL_MENU_DIVIDER,0,0,FL_NORMAL_SIZE,menu_color},
         {"Render cursor graphically",0,cursor_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color}, 
-        {"Edit/Display centre point/axis of rotation ",FL_ALT+'x',show_rot_axis_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color}, 
-        {"Display barriers as transparent (3D)",FL_ALT+'t',transparent_walls_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Edit/Display centre point/axis of rotation ",ALT_COMMAND+'x',show_rot_axis_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color}, 
+        {"Display barriers as transparent (3D)",ALT_COMMAND+'t',transparent_walls_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
         {"Display origins as 3D desk models",0,toggle_deskmodel_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},    //60 deskmodel
         {"Lock view to floor (free view)",0,floor_lock_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color}, //61 - lock floor
         {"Visualise floor/ceiling (free view)",0,floor_ceil_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE|FL_MENU_DIVIDER,0,0,FL_NORMAL_SIZE,menu_color},    //62 -floor ceil 
         {"Toggle Fullscreen",FL_COMMAND|'k',go_fullscreen_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Show console/Info window",FL_ALT+'y',info_bar_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Show side panel",FL_ALT+'h',panel_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,0,menu_color},
+        {"Show console/Info window",ALT_COMMAND+'y',info_bar_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Show side panel",ALT_COMMAND+'b',panel_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
         {0,0,0,0,0,0,0,0,0},
         {"Options",0,0,0,FL_SUBMENU,0,0,FL_NORMAL_SIZE,menu_color},        
         {"Floorplan",FL_COMMAND+'f',show_floorplan_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color}, //  68  show floorplan
-        {"Floorplan colours",FL_ALT+'u',plan_colors_menu_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color}, // 69 floorplan_colors_index
+        {"Floorplan colours",ALT_COMMAND+'u',plan_colors_menu_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color}, // 69 floorplan_colors_index
         {"Grid",FL_COMMAND+'g',show_grid_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Scale/Orientation guide",FL_ALT+'s',show_scale_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Scale/Orientation guide",ALT_COMMAND+'s',show_scale_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
         {"Display route",FL_COMMAND+'r',show_route_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},//   72     - show route
         {"Display metric",FL_COMMAND+'d',show_metric_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},//  73     - show metric
-        {"Vertex indices",FL_ALT+'v',points_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Edge indices",FL_ALT+'g',segments_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Location marker indices",FL_ALT+'l',locations_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Vertex indices",ALT_COMMAND+'v',points_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Edge indices",ALT_COMMAND+'g',segments_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Location marker indices",ALT_COMMAND+'l',locations_label_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
         {"Colour scale",FL_COMMAND+'u',color_scale_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},        
         {"Limit edge visualisation",FL_COMMAND+'l',limit_edge_cb_static,this,FL_MENU_TOGGLE|FL_MENU_DIVIDER,0,0,FL_NORMAL_SIZE,menu_color}, //    78      - limit edge
-        {"Auto-connect spatial graph vertices",FL_ALT+'j',toggle_autoconnect_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Snap to point priority",FL_ALT+'i',snap_to_point_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Auto-connect spatial graph vertices",ALT_COMMAND+'j',toggle_autoconnect_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Snap to point priority",ALT_COMMAND+'i',snap_to_point_cb_static,this,FL_MENU_TOGGLE|FL_MENU_VALUE,0,0,FL_NORMAL_SIZE,menu_color},
         {"Move mode/Alt lock",FL_COMMAND+'m',set_move_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},//   81      move mode
         {"Constuct barriers as transparent/floor areas as negative  ",FL_COMMAND+'t',mark_transparent_walls_cb_static,this,FL_MENU_TOGGLE,0,0,FL_NORMAL_SIZE,menu_color},
-        {"Set guide angle",FL_ALT+'a',show_ang_win_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
+        {"Set guide angle",ALT_COMMAND+'a',show_ang_win_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
         {0,0,0,0,0,0,0,0,0},
         {"Help", 0, 0, 0, FL_SUBMENU ,0,0,FL_NORMAL_SIZE,menu_color},
         {"About",0,about_cb_static,this,0,0,0,FL_NORMAL_SIZE,menu_color},
@@ -1147,9 +1147,9 @@ void base::build_and_run(){
     ab_g->color(back_color);
 
     std::stringstream s_about;
-    s_about<<"Spatial Metric Calculator v1.4\n\n"<<"An application for constructing\n"<<"and visualising spatially embedded\n"<<"undirected graphs, and the\n"<<"calculation of graph metrics.\n\n"<<"Copyright (C), 2014-2021, Richard Spinney.\n\n"<<"GUI with FLTK "<<FL_MAJOR_VERSION<<"."<<FL_MINOR_VERSION<<"."<<FL_PATCH_VERSION<<std::endl<<"http://www.fltk.org/";
+    s_about<<"Spatial Metric Calculator v1.4.1\n\n"<<"An application for constructing\n"<<"and visualising spatially embedded\n"<<"undirected graphs, and the\n"<<"calculation of graph metrics.\n\n"<<"Copyright (C), 2014-2021, Richard Spinney.\n\n"<<"GUI with FLTK "<<FL_MAJOR_VERSION<<"."<<FL_MINOR_VERSION<<"."<<FL_PATCH_VERSION<<std::endl<<"http://www.fltk.org/";
 
-    std::cout<<"\n          Spatial Metric Calculator v1.4\n\n"<<"          An application for constructing\n"<<"          and visualising spatially embedded\n"<<"          undirected graphs, and the\n"<<"          calculation of graph metrics.\n\n"<<"          Copyright (C), 2014-2021, Richard Spinney.\n\n"<<"          GUI with FLTK "<<FL_MAJOR_VERSION<<"."<<FL_MINOR_VERSION<<"."<<FL_PATCH_VERSION<<std::endl<<"          http://www.fltk.org/\n";
+    std::cout<<"\n          Spatial Metric Calculator v1.4.1\n\n"<<"          An application for constructing\n"<<"          and visualising spatially embedded\n"<<"          undirected graphs, and the\n"<<"          calculation of graph metrics.\n\n"<<"          Copyright (C), 2014-2021, Richard Spinney.\n\n"<<"          GUI with FLTK "<<FL_MAJOR_VERSION<<"."<<FL_MINOR_VERSION<<"."<<FL_PATCH_VERSION<<std::endl<<"          http://www.fltk.org/\n";
 
     std::string string_about = s_about.str();    
     Fl_Box* about_box = new Fl_Box(0,0,330,200,string_about.c_str());

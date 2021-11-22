@@ -429,8 +429,8 @@ void base::lines_to_walls(int type){
     }
 
     prepare_undo();
-    draw->show_warning_visibility();
-      
+    show_warning_visibility();
+  
 }
 
 
