@@ -21,7 +21,7 @@ This program utilises [FLTK](http://www.fltk.org/index.php) to achieve GUI funct
 
 ## Getting started
 
-Are you a Windows, Mac or Linux user? Then you can simply download the pre-compiled executables found in the [releases pages](https://github.com/rspinney/Spatial-Metric-Calculator/releases/latest/) of the repository and get started straight away! The current version is v1.4. Note, your machine must have a working OpenGL implementation for Spatial Metric Calculator to function.
+Are you a Windows, Mac or Linux user? Then you can simply download the pre-compiled executables found in the [releases pages](https://github.com/rspinney/Spatial-Metric-Calculator/releases/latest/) of the repository and get started straight away! The current version is v1.4.1. Note, your machine must have a working OpenGL implementation for Spatial Metric Calculator to function.
 
 ## Examples
 

@@ -7,7 +7,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # set the project name
-project(${EXEC_NAME}  VERSION 1.4 LANGUAGES CXX)
+project(${EXEC_NAME}  VERSION 1.4.1 LANGUAGES CXX)
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
