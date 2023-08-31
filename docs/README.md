@@ -1,9 +1,6 @@
 # Spatial Metric Calculator
 
 ![Screenshot](misc/screens.png)
-[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
-[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
-[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 [![DOI](https://zenodo.org/badge/411694209.svg)](https://zenodo.org/badge/latestdoi/411694209)
 
 Spatial Metric Calculator is a research software tool for performing *code-free* graph analyses and visualisation. 
