@@ -49,7 +49,11 @@ if (WIN32)
     target_sources(${EXEC_NAME} PRIVATE ./resources/smc.rc ./src/stdafx.cpp ./src/include/stdafx.h)
 elseif (APPLE)
     target_sources(${EXEC_NAME} PRIVATE ${smc_ICON})
-    set_target_properties(${EXEC_NAME} PROPERTIES MACOSX_BUNDLE_COPYRIGHT "Copyright (C), 2014-2021, Richard Spinney." MAXOSX_BUNDLE_VERSION "1.4.0" MACOSX_BUNDLE_LONG_VERSION_STRING "1.4.0" MACOSX_BUNDLE_SHORT_VERSION_STRING "1.4")
+    set_target_properties(${EXEC_NAME} PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.SpatialMetricCalculator" MACOSX_BUNDLE_COPYRIGHT "Copyright (C), 2014-2021, Richard Spinney." MAXOSX_BUNDLE_VERSION "1.4.0" MACOSX_BUNDLE_LONG_VERSION_STRING "1.4.0" MACOSX_BUNDLE_SHORT_VERSION_STRING "1.4")
+endif()
+
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
 endif()
 
 ## Linking options   
